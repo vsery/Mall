@@ -1,0 +1,138 @@
+
+        <div class="pageheader notab">
+            <h1 class="pagetitle">用户等级</h1>
+            <span class="pagedesc">设置商城用户等级名称和条件</span>
+            
+        </div><!--pageheader-->
+        
+        <div id="contentwrapper" class="contentwrapper lineheight21">
+        
+        
+            <form class="stdform stdform2" method="post">
+				<div class="tableoptions">                    
+					<input type="button" class="radius3" onclick="add_level()" value="增加等级"/>
+				</div><!--tableoptions-->
+				<table cellpadding="0" cellspacing="0" border="0" id="table2" class="stdtable stdtablecb">
+                    <thead>
+                        <tr>
+                            <th rowspan="2" class="head1">名称</th>
+							<th colspan="3" class="head1">条件</th>
+							<th colspan="3" class="head1">权限</th>
+							 <th rowspan="2" class="head1">操作</th>
+						</tr>
+						<tr>
+                            <th class="head0">订单数</th>
+                            <th class="head1">直接下级数</th>
+                            <th class="head0">所有下级数</th>
+							<th class="head0">分销</th>
+							<th class="head1">提现</th>
+							<th class="head0">转账</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+						<tr>
+                            <td><input type="text" name="name[]" value="{$_CFG['level'][0]['name']}" /></td>
+                            <td><input type="text" style="width:30px" name="orders[]" value="{$_CFG['level'][0]['orders']}" /></td>
+                            <td><input type="text" style="width:30px" name="agent[]" value="{$_CFG['level'][0]['agent']}" /></td>
+                            <td><input type="text" style="width:30px" name="agent_all[]" value="{$_CFG['level'][0]['agent_all']}" /></td>
+							<td>
+								<select name="dist[]" default="{$_CFG['level'][0]['dist']}">
+									<option value="1">开启</option>
+									<option value="0">关闭</option>
+								</select>
+							</td>
+							<td>
+								<select name="withdraw[]" default="{$_CFG['level'][0]['withdraw']}">
+									<option value="1">开启</option>
+									<option value="0">关闭</option>
+								</select>
+							</td>
+							<td>
+								<select name="deposit[]" default="{$_CFG['level'][0]['deposit']}">
+									<option value="1">开启</option>
+									<option value="0">关闭</option>
+								</select>
+							</td>
+							<td>无</td>
+                        </tr>
+                    	<volist name="_CFG['level']" id="vo" offset="1">
+                        <tr>
+                            <td><input type="text" name="name[]" value="{$vo.name}" /></td>
+                            <td><input type="text" style="width:30px" name="orders[]" value="{$vo.orders}" /></td>
+                            <td><input type="text" style="width:30px" name="agent[]" value="{$vo.agent}" /></td>
+                            <td><input type="text" style="width:30px" name="agent_all[]" value="{$vo.agent_all}" /></td>
+							<td>
+								<select name="dist[]" default="{$vo.dist}">
+									<option value="1">开启</option>
+									<option value="0">关闭</option>
+								</select>
+							</td>
+							<td>
+								<select name="withdraw[]" default="{$vo.withdraw}">
+									<option value="1">开启</option>
+									<option value="0">关闭</option>
+								</select>
+							</td>
+							<td>
+								<select name="deposit[]" default="{$vo.deposit}">
+									<option value="1">开启</option>
+									<option value="0">关闭</option>
+								</select>
+							</td>
+							<td><a href="javascript:;" onclick="del_level(this)">删除</a></td>
+                        </tr>
+                        </volist>
+                    </tbody>
+                </table>
+				<script>
+				function add_level(){
+					//return false;
+					html = '<tr>'
+                           +' <td><input type="text" name="name[]" value="" /></td>'
+                           +' <td><input type="text" style="width:30px" name="orders[]" value="" /></td>'
+                           +' <td><input type="text" style="width:30px" name="agent[]" value="" /></td>'
+                           +' <td><input type="text" style="width:30px" name="agent_all[]" value="" /></td>'
+						   +' <td>'
+						   +'	<select name="dist[]" default="">'
+							+'		<option value="1">开启</option>'
+							+'		<option value="0">关闭</option>'
+							+'	</select>'
+							+'</td>'
+							+'<td>'
+							+'	<select name="withdraw[]" default="">'
+							+'		<option value="1">开启</option>'
+							+'		<option value="0">关闭</option>'
+							+'	</select>'
+							+'</td>'
+							+'<td>'
+							+'	<select name="deposit[]" default="">'
+							+'		<option value="1">开启</option>'
+							+'		<option value="0">关闭</option>'
+							+'	</select>'
+							+'</td>'
+							+'<td><a href="javascript:;" onclick="del_level(this)">删除</a></td>'
+                        +'</tr>';
+					
+					jQuery("#table2").find("tbody").append(html);
+				}
+				
+				function del_level(obj){
+					jQuery(obj).parent("td").parent("tr").remove();
+				}
+
+				jQuery(document).ready(function(e) {
+				   //调整下拉的默认选择
+				   jQuery("select").each(function(index, element) {
+					  jQuery(element).find("option[value='"+jQuery(this).attr('default')+"']").attr('selected','selected');
+				   });
+				 });
+				</script>
+				<p class="stdformbutton">
+					<button class="submit radius2">提交</button>
+					<input type="reset" class="reset radius2" value="重置" />
+				</p>
+			</form>
+        
+        
+        </div><!--contentwrapper-->
+        

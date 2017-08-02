@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <include file="include/head" title="申请转让" />
+</head>
+
+<body>
+	<div class="header-blank"></div>
+    <div class="header">
+		申请转让
+		<span class="left">
+			<a href="javascript:;" onclick="window.history.go(-1)"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></a>
+		</span>
+	</div>
+	
+	<div class="depositadd-main">
+		<form method="post" name="form" id="form">
+			<notempty name="errmsg">
+			<blockquote>
+			  <p>提示:</p>
+			  <p>{$errmsg}</p>
+			</blockquote>
+			</notempty>
+			<div class="depositadd-avail">
+				可转让金额:<br/>
+				<span class="red">￥{$user.money}</span>
+			</div>
+			<div class="depositadd-info gray">
+				转让说明:将自己的可用余额转赠给其他会员。一经转让无法退回，转让金额必须50起，按1的倍数转让！
+			</div>
+			<div class="depositadd-accept">
+				受让人：<br/>
+				<div class="input-group">
+				  <span class="input-group-addon" id="basic-addon1">{$_CFG.site.prefix}</span>
+				  <input type="text" class="form-control" name="code" placeholder="受让人关注编码" onblur="getUserInfo()" aria-describedby="basic-addon1">
+				</div>
+				<span class="gray">优化提示:只需填写对方关注编码的数字部分</span>
+			</div>
+			<div class="depositadd-user">
+				<img src="" class="headimg" />
+				<span class="name"></span>
+				<input type="hidden" name="name" value="" />
+			</div>
+			<div class="depositadd-accept">
+				申请转让金额：<br/>
+				<div class="input-group">
+				  <input type="text" class="form-control" placeholder="50" value="50" name="money" aria-describedby="basic-addon1">
+				  <span class="input-group-addon" id="basic-addon1">元</span>
+				</div>
+				<span class="gray">优化提示:只需填写对方关注编码的数字部分</span>
+			</div>
+			<div class="depositadd-btn">
+				<a href="javascript:;" onclick="form_submit()">提交申请</a>
+			</div>
+			
+			<!--模态框-->
+			<div class="modal fade" id="tips">
+			  <div class="modal-dialog">
+				<div class="modal-content">
+				  <div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title">确认转让信息</h4>
+				  </div>
+				  <div class="modal-body">
+					<p>请再次确认转让编码为：qimiao<span id="confirm-code"></span></p>
+					<p>微信名：<span id="confirm-name"></span></p>
+					<p>已经确认转让将无法退回</p>
+				  </div>
+				  <div class="modal-footer">
+					<button type="button" class="btn btn-warning" onclick="confirm_form()">我确认</button>
+					<button type="button" class="btn btn-danger" data-dismiss="modal">再看看</button>
+				  </div>
+				</div><!-- /.modal-content -->
+			  </div><!-- /.modal-dialog -->
+			</div><!-- /.modal -->
+		</form>
+	</div>
+	<script>
+	var has_accept = false; // 是否有正确的接受人
+	// 获取用户信息
+	function getUserInfo(){
+		var code = $("input[name=code]").val();
+		if(code == ''){
+			has_accept = false;
+			$(".depositadd-user").hide();
+			return;
+		}
+		console.log(code);
+		$.post("{:U('get_user_info')}",{user_id:code},function(d){
+			if(d.status == '1'){
+				$(".depositadd-user .headimg").attr('src', d.headimg);
+				$(".depositadd-user .name").text(d.nickname);
+				$("input[name=name]").val(d.nickname);
+				$(".depositadd-user").show();
+				has_accept = true;
+			}else{
+				$(".depositadd-user").hide();
+				alert('用户不存在');
+			}
+		});
+	}
+	
+	// 点击确认提交按钮
+	function form_submit(){
+		if(!has_accept){
+			alert('请填写接受人');
+			return false;
+		}
+		$("#confirm-code").text( $("input[name=code]").val());
+		$("#confirm-name").text( $("input[name=name]").val());
+		$("#tips").modal();
+	}
+	
+	// 点击确认按钮
+	function confirm_form(){
+		form.submit();
+	}
+	</script>
+	<include file="include/bottom" />
+
+
+</body>
+</html>

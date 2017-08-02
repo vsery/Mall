@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <include file="include/head" title="添加收货地址" />
+</head>
+
+<body>
+	<div class="header-blank"></div>
+    <div class="header">
+		商城首页
+		<span class="left">
+			<a href="javascript:;" onclick="window.history.go(-1)"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></a>
+		</span>
+	</div>
+	
+	<div class="addradd-main">
+		<form method="post">
+			<div class="addradd-item">
+				联系人姓名<br/>
+				<input type="text" name="name" />
+			</div>
+			<div class="addradd-item">
+				联系人手机<br/>
+				<input type="text" name="mobile" />
+			</div>
+			<div class="addradd-item">
+				所在地区<br/>
+				<select id="dist">
+					<option value="">请选择</option>
+				</select>
+				<input type="hidden" class="select_value" name="district" />
+			</div>
+			<div class="addradd-item">
+				详细地址<br/>
+				<input type="text" name="addr" />
+			</div>
+			
+			<div class="addradd-btn">
+				<input type="submit" value="保存地址" />
+			</div>
+		</form>
+	</div>
+	
+	<include file="include/bottom" />
+<script src="__PUBLIC__/js/district-all.js" type="text/javascript"></script>
+<script src="__PUBLIC__/js/linkagesel-min.js" type="text/javascript"></script>
+<script>
+var opts = {
+		data: districtData,     // districtData为district-all.js中定义的变量
+		select:  '#dist',
+		selClass:'select-fix-width',
+		head:'请选择',
+		fixWidth:'100%'
+};
+var linkageSel = new LinkageSel(opts);
+districtData = opts = null; // 如果数据量大最好在创建LinkageSel实例之后清空
+linkageSel.onChange(function() {
+	d = this.getSelectedDataArr('name'),    // 所有有选定菜单的name. this === linkageSel2
+	arr = [];
+	select_value = $(".select_value");
+	for (var i = 0, len = d.length; i < len; i++) {
+		arr.push(d[i]);
+	}
+	select_value.val(arr.join('||'));
+	$(".addradd-item select").css('width', '100%');
+});
+</script>
+
+</body>
+</html>

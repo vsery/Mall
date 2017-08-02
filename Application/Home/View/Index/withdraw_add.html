@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <include file="include/head" title="提现申请" />
+</head>
+
+<body>
+	<div class="header-blank"></div>
+    <div class="header">
+		提现申请
+		<span class="left">
+			<a href="javascript:;" onclick="window.history.go(-1)"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></a>
+		</span>
+	</div>
+	
+	<div class="withdrawadd-main">
+		<form method="post" name="form" id="form">
+			<notempty name="errmsg">
+			<blockquote>
+			  <p>提示:</p>
+			  <p>{$errmsg}</p>
+			</blockquote>
+			</notempty>
+			<div class="withdrawadd-avail">
+				<label>可提现金额:</label><br/>
+				<span class="red">￥{$user.money}</span>
+			</div>
+			<div class="withdrawadd-info gray">
+				提现说明:每周一统一处理提现申请;提现金额必须50起，均按50的倍数提现否则无法通过审核！
+			</div>
+			<div class="withdrawadd-accept">
+				<label>申请提现：</label><br/>
+				<div class="input-group">
+					<input type="text" class="form-control" name="money" placeholder="0.00" aria-describedby="basic-addon1">
+					<span class="input-group-addon" id="basic-addon1">元</span>
+				</div>
+				<span class="gray">即日起将统一收取5%的服务费</span>
+			</div>
+			
+			<div class="depositadd-accept">
+				<label>开户银行：</label><br/>
+				<select name="bank" class="myselect">
+					<volist name="banks" id="vo">
+					<option value="{$vo.id}">{$vo.bank}({$vo.cardno})</option>
+					</volist>
+				</select>
+			</div>
+			<div class="depositadd-btn">
+				<a href="javascript:;" onclick="form_submit()">提交申请</a>
+			</div>
+			<script>
+			function form_submit(){
+				form.submit();
+			}
+			</script>
+		</form>
+	</div>
+	<include file="include/bottom" />
+
+
+</body>
+</html>

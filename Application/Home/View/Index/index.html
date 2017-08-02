@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <include file="include/head" title="{$_CFG.site.name}" />
+</head>
+
+<body>
+	<div class="header-blank"></div>
+    <div class="header">
+		{$_CFG.site.name}
+	</div>
+	<div class="banner">
+		<style>
+			.focus{ width:100%;  margin:0 auto; position:relative; overflow:hidden;   }
+			.focus .hd{ width:100%; height:11px;  position:absolute; z-index:1; bottom:5px; text-align:center;  }
+			.focus .hd ul{ display:inline-block; height:5px; padding:3px 5px; background-color:rgba(255,255,255,0.7); 
+				-webkit-border-radius:5px; -moz-border-radius:5px; border-radius:5px; font-size:0; vertical-align:top;
+				box-sizing:content-box;
+			}
+			.focus .hd ul li{ display:inline-block; width:5px; height:5px; -webkit-border-radius:5px; -moz-border-radius:5px; border-radius:5px; background:#8C8C8C; margin:0 5px;  vertical-align:top; overflow:hidden;   }
+			.focus .hd ul .on{ background:#FE6C9C;  }
+
+			.focus .bd{ position:relative; z-index:0; }
+			.focus .bd li img{ width:100%; background:url(__PUBLIC__/images/loading.gif) center center no-repeat;  }
+			.focus .bd li a{ -webkit-tap-highlight-color:rgba(0, 0, 0, 0); /* 取消链接高亮 */  }
+			
+		</style>
+		<div id="focus" class="focus">
+			<div class="hd">
+				<ul></ul>
+			</div>
+			<div class="bd">
+				<ul>
+					<volist name="_CFG['banner']['config']" id="vo">
+					<li><a href="{$vo.url|default='javascript:;'}"><img _src="{$vo.pic}" src="{$vo.pic}" /></a></li>
+					</volist>
+				</ul>
+			</div>
+		</div>
+		<script src="__PUBLIC__/js/TouchSlide.1.1.js"></script>
+		<script type="text/javascript">
+			TouchSlide({ 
+				slideCell:"#focus",
+				titCell:".hd ul", //开启自动分页 autoPage:true ，此时设置 titCell 为导航元素包裹层
+				mainCell:".bd ul", 
+				effect:"left", 
+				autoPlay:true,//自动播放
+				autoPage:true, //自动分页
+				switchLoad:"_src" //切换加载，真实图片路径为"_src" 
+			});
+		</script>
+	</div>
+	<div class="index-main">
+		<volist name="list" id="vo">
+		<div class="index-item">
+			<img src="{$vo.pic}" class="product" />
+			<div class="title">{$vo.title|mb_substr=0,17,'utf-8'}</div>
+			<div class="price">价格：￥{$vo.price}元</div>
+			<div class="btn">
+				<a href="{:U('Index/product?id='.$vo['id'])}">
+					进入购买<span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
+				</a>
+			</div>
+		</div>
+		</volist>
+	</div>
+	
+	<include file="include/bottom" />
+
+
+</body>
+</html>

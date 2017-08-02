@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <include file="include/head" title="购物车" />
+</head>
+
+<body>
+	<div class="header-blank"></div>
+    <div class="header">
+		购物车
+		<span class="left">
+			<a href="javascript:;" onclick="window.history.go(-1)"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></a>
+		</span>
+		<span class="right">
+			<a href="javascript:;" onclick="del_product()"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+		</span>
+	</div>
+	
+	<div class="cartedit-main" style="position:relative;">
+		<volist name="list" id="vo">
+		<div class="cartedit-item" record="{$vo.id}">
+			<table>
+				<tr>
+					<td><input type="checkbox" class="checkbox" value="{$vo.id}" /></td>
+					<td><img src="{$vo.pic}" class="product" /></td>
+					<td>
+						<div class="title">{$vo.title}</div>
+						<notempty name="vo['attr']">
+						<div class="attr">
+							属性：{$vo.attr}
+						</div>
+						</notempty>
+						<div class="price">
+							<del style=" font-weight:normal; color:#666;">市场价：￥{$vo.market_price}</del>
+							￥{$vo.price}
+						</div>
+						<div class="nums">
+							<a href="javascript:;" onclick="nums_down({$vo.id})" class="down">-</a>
+							<input type="text" name="nums" value="{$vo.nums}" record="{$vo.id}" readonly />
+							<a href="javascript:;" onclick="nums_up({$vo.id})" class="up">+</a>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+		</volist>
+		<div class="cartedit-empty">
+			<p>购物车暂时没有内容！</p>
+			<p><a href="/">现在去逛逛</a></p>
+		</div>
+	</div>
+	<script>
+	function del_product(){
+		// 获得选中的id
+		var ids = [];
+		$(".checkbox:checked").each(function(index, el){
+			ids.push($(el).val());
+		});
+		$.post("{:U('Index/del_product')}",{ids:ids.join(',')},function(d){
+			if(d.status == 1){
+				$(".checkbox:checked").each(function(index, el){
+					$("div[record="+$(el).val()+"]").remove();
+				});
+				$("#total").text("￥" + d.total);
+			}else{
+				alert(d.info);
+			}
+		});
+	}
+	
+	function nums_down(id){
+		cur_num = parseInt($("input[record="+id+"]").val());
+		if(isNaN(cur_num) || cur_num <1){
+			cur_num = 1;
+		}
+		cur_num --;
+		set_product(id, cur_num);
+	}
+	
+	function nums_up(id){
+		cur_num = parseInt($("input[record="+id+"]").val());
+		if(isNaN(cur_num) || cur_num <1){
+			cur_num = 1;
+		}
+		cur_num ++;
+		set_product(id, cur_num);
+	}
+	
+	function set_product(id, cur_num){
+		$.post("{:U('Index/set_product')}",{id:id,nums:cur_num},function(d){
+			if(d.status){
+				if(cur_num <=0){
+					$("div[record="+id+"]").remove();
+				}else{
+					$("input[record="+id+"]").val(cur_num);
+				}
+				$("#total").text("￥" + d.total);
+			}else{
+				alert(d.info);
+			}
+		});
+		
+	}
+	</script>
+	<div class="cart-checkout-blank"></div>
+	<div class="cart-checkout">
+		总计：<span class="red" id="total">￥{$total}</span>
+		<div class="checkout-btn">
+			<a href="{:U('Index/cart?addr='.$_GET['addr'])}">结算</a>
+		</div>
+	</div>
+	
+	<include file="include/bottom" />
+</body>
+</html>

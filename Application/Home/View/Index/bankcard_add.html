@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <include file="include/head" title="添加银行卡" />
+</head>
+
+<body>
+	<div class="header-blank"></div>
+    <div class="header">
+		添加银行卡
+		<span class="left">
+			<a href="{:U('Index/ucenter')}" onclick="window.history.go(-1)"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></a>
+		</span>
+	</div>
+	
+	<div class="bankcardadd-main">
+		<form method="post" name="form" id="form">
+			<div class="bankcardadd-item">
+				开户行<br/>
+				<select name="bank" class="myselect">
+					<volist name="banks" id="vo">
+					<option value="{$vo}">{$vo}</option>
+					</volist>
+				</select>
+			</div>
+			<div class="bankcardadd-item">
+				开户分行名称<br/>
+				<input type="text" name="bank_name" />
+			</div>
+			<div class="bankcardadd-item">
+				卡号<br/>
+				<input type="text" name="cardno" />
+			</div>
+			<div class="bankcardadd-item">
+				开户名<br/>
+				<input type="text" name="name" />
+			</div>
+			
+			<div class="bankcardadd-item">
+				<input type="submit" class="btn" value="保存银行卡" />
+				<a href="{:U('Index/bankcard')}" class="cancle">取消</a>
+			</div>
+		</form>
+	</div>
+	
+	<include file="include/bottom" />
+
+</body>
+</html>

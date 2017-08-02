@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+   <include file="include/head" title="收货地址" />
+</head>
+
+<body>
+	<div class="header-blank"></div>
+    <div class="header">
+		商城首页
+		<span class="left">
+			<a href="javascript:;" onclick="window.history.go(-1)"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></a>
+		</span>
+	</div>
+	
+	<div class="addr-main">
+		<div class="addr-add">
+			<a href="{:U('Index/addr_add?act='.$_GET['act'])}">
+				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+				添加新地址
+			</a>
+		</div>
+		<volist name="list" id="vo">
+		<div class="addr-item">
+			{//如果是选择地址点击则跳转回购物车，否则设置为默认地址}
+			<a href="<if condition="$_GET['act'] eq 'select'">{:U('Index/cart?addr='.$vo['id'])}<else/>{:U('Index/addr?default='.$vo['id'])}</if>">
+				{$vo.name}({$vo.mobile})<br/>
+				{:str_replace('||',' ', $vo['district'])}{$vo.addr}
+				<if condition="$user['default_addr'] eq $vo['id']"><span class="glyphicon glyphicon-ok-circle"></span></if>
+			</a>
+		</div>
+		</volist>
+	</div>
+	
+	<include file="include/bottom" />
+
+</body>
+</html>

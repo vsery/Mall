@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <include file="include/head" title="{$_CFG.site.name}" />
+	<link href="__PUBLIC__/plugins/swiper/swiper.min.css" rel="stylesheet" type="type/css" />
+</head>
+
+<body style=" background:#eee">
+	<!--div class="header-blank"></div>
+    <div class="header">
+		{$_CFG.site.name}
+	</div-->
+	<style>
+		
+		.index-main{ padding:0;}
+		.index-item2{ margin-top:15px; position:relative; float:left; width:50%; padding:5px;}
+		.index-item2:first-child{ }
+		.index-item2 .title{  padding:0px 5px; width:100%; height:30px; line-height:30px; background:#fff; color:#666; text-overflow:ellipsis;white-space:nowrap; overflow:hidden;}
+		.index-search{ background:#e5e4e9; padding:5px 15px; position:relative;}
+		.index-search .keyword{ border:1px solid #ccc; border-radius:20px; padding:0 15px; line-height:40px; height:40px; width:100%; outline:none;}
+		.index-search .sbtn{ position:absolute; right:30px; top:5px; font-family:"Glyphicons Halflings"; z-index:99; color:#ada8a8; line-height:40px;}
+		.index-search .default-btn{ right:auto !important; left:30px !important;}
+	</style>
+	<div class="index-search">
+		<form method="post" action="{:U('all')}" id="searchForm">
+			<input type="text" class="keyword" name="keyword" placeholder="" />
+			<span class="glyphicon glyphicon-search sbtn default-btn"> 搜索宝贝</span>
+		</form>
+		<script>
+		$(document).ready(function(e){
+			$(".keyword").focus(function(e){
+				$(".index-search .sbtn").removeClass('default-btn');
+				$(".index-search .sbtn").text('');
+			});
+			
+			$(".keyword").blur(function(e){
+				if($(this).val() == ''){
+					$(this).css('padding-left','15px;');
+					$(".index-search .sbtn").addClass('default-btn');
+					$(".index-search .sbtn").text(' 搜索宝贝');
+				}
+			});
+			$(".sbtn").click(function(e){
+				if(!$(this).hasClass('default-btn')){
+					$("#searchForm").submit();
+				}
+			});
+		});
+		</script>
+	</div>
+	
+	
+	<div class="banner">
+		<style>
+			.focus{ width:100%;  margin:0 auto; position:relative; overflow:hidden;   }
+			.focus .hd{ width:100%; height:11px;  position:absolute; z-index:1; bottom:5px; text-align:center;  }
+			.focus .hd ul{ display:inline-block; height:5px; padding:3px 5px; background-color:rgba(255,255,255,0.7); 
+				-webkit-border-radius:5px; -moz-border-radius:5px; border-radius:5px; font-size:0; vertical-align:top;
+				box-sizing:content-box;
+			}
+			.focus .hd ul li{ display:inline-block; width:5px; height:5px; -webkit-border-radius:5px; -moz-border-radius:5px; border-radius:5px; background:#8C8C8C; margin:0 5px;  vertical-align:top; overflow:hidden;   }
+			.focus .hd ul .on{ background:#FE6C9C;  }
+
+			.focus .bd{ position:relative; z-index:0; }
+			.focus .bd li img{ width:100%; background:url(__PUBLIC__/images/loading.gif) center center no-repeat;  }
+			.focus .bd li a{ -webkit-tap-highlight-color:rgba(0, 0, 0, 0); /* 取消链接高亮 */  }
+			
+		</style>
+		<div id="focus" class="focus">
+			<div class="hd">
+				<ul></ul>
+			</div>
+			<div class="bd">
+				<ul>
+					<volist name="_CFG['banner']['config']" id="vo">
+					<li><a href="{$vo.url|default='javascript:;'}"><img _src="{$vo.pic}" src="{$vo.pic}" /></a></li>
+					</volist>
+				</ul>
+			</div>
+		</div>
+		<script src="__PUBLIC__/js/TouchSlide.1.1.js"></script>
+		<script type="text/javascript">
+			TouchSlide({ 
+				slideCell:"#focus",
+				titCell:".hd ul", //开启自动分页 autoPage:true ，此时设置 titCell 为导航元素包裹层
+				mainCell:".bd ul", 
+				effect:"left", 
+				autoPlay:true,//自动播放
+				autoPage:true, //自动分页
+				switchLoad:"_src" //切换加载，真实图片路径为"_src" 
+			});
+		</script>
+	</div>
+	
+	<style>
+	.index-cate{ padding:10px 0;}
+	.index-cate ul{ list-style:none; padding:0; margin:0;}
+	.index-cate li{ float:left; width:25%; text-align:center;}
+	.index-cate li a{ color:#666;}
+	.index-cate li img{ width:80%; max-width:100%; display:block; border-radius:50%; margin:10px auto;}
+	</style>
+	<div class="index-cate">
+		<ul>
+			<volist name="cates" id="vo">
+				<if condition="$vo['pid'] eq 0">
+				<li>
+					<a href="{:U('all?cate_id='.$vo['id'])}"><img src="{$vo.pic}" />{$vo.name}</a>
+				</li>
+				</if>
+			</volist>
+		</ul>
+		<div style=" clear:both"></div>
+	</div>
+	
+	<div class="index-main">
+		<volist name="list" id="vo">
+		<div class="index-item2" style="">
+			
+			<a href="{:U('Index/product?id='.$vo['id'])}">
+				<img src="{$vo.pic}" style=" width:100%; float:none; height:auto;" />
+			</a>
+			<div class="title">
+			<a href="{:U('Index/product?id='.$vo['id'])}" >	{$vo.title}</a>
+			</div>
+			<div style="padding:5px; text-align:left; line-height:30px; background:#fff;">
+				<!--库存:{$vo.stock}-->
+				<span style=" font-size:20px; color:red;">￥{$vo.price}</span>
+				<!--div class="price" style=" line-height:20px; float:right;">
+				赠{$_CFG.site.points_name}:{$vo.points}
+				</div-->
+				<span class="right" style=" float:right">
+					<a href="{:U('Index/product?id='.$vo['id'])}" style=" padding:3px 5px; background:red; color:#fff;">立即购买</a>
+				</span>
+				<div style="clear:both"></div>
+			</div>
+		</div>
+		</volist>
+		<div style="clear:both"></div>
+	</div>
+	
+	<include file="include/bottom" />
+
+
+</body>
+</html>

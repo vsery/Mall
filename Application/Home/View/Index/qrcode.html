@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <include file="include/head" title="推广二维码" />
+</head>
+
+<body>
+	<!--div class="header-blank"></div>
+    <div class="header">
+		推广二维码
+		<span class="left">
+			<a href="{:U('Index/ucenter')}"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></a>
+		</span>
+	</div-->
+	
+	<div class="qrcode-main">
+		生成中需要5秒左右，请稍后...
+		<img src="{:U('Index/get_qrcode')}" id="qrcode" style=" width:100%" />
+		
+		<script>
+		$(document).ready(function(d){
+			h = $(window).height();
+			img_h = h;// - 90;
+			$("#qrcode").height(img_h+"px");
+		});
+		</script>
+	</div>
+	<!--include file="include/bottom" /-->
+
+
+</body>
+</html>

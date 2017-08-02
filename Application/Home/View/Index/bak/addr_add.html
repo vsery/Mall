@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=no">
+    <title></title>
+    <link href="__PUBLIC__/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link href="__PUBLIC__/plugins/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
+	
+	<link href="__PUBLIC__/css/store.css?bg" rel="stylesheet" type="text/css" />
+	<script src="__PUBLIC__/js/jquery-1.7.min.js" type="text/javascript"></script>
+</head>
+
+<body>
+	<div class="header-blank"></div>
+    <div class="header">
+		商城首页
+		<span class="left">
+			<a href=""><span class="glyphicon glyphicon-align-left" aria-hidden="true"></span></a>
+		</span>
+		<span class="right">
+			<a href=""><span class="glyphicon glyphicon-align-left" aria-hidden="true"></span></a>
+		</span>
+	</div>
+	
+	<div class="addradd-main">
+		<div class="addradd-item">
+			联系人姓名<br/>
+			<input type="text" name="name" />
+		</div>
+		<div class="addradd-item">
+			联系人手机<br/>
+			<input type="text" name="name" />
+		</div>
+		<div class="addradd-item">
+			所在地区<br/>
+			<select name="city" id="dist">
+				<option value="">请选择</option>
+			</select>
+			<input type="hidden" class="select_value" name="district" />
+		</div>
+		<div class="addradd-item">
+			详细地址<br/>
+			<input type="text" name="name" />
+		</div>
+		
+		<div class="addradd-btn">
+			<input type="submit" value="保存地址" />
+		</div>
+	</div>
+	
+	<div class="footer-blank"></div>
+	<div class="footer">
+		<ul>
+			<li>
+				<a href="">
+					<span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
+					首页
+				</a>
+			</li>
+			<li>
+				<a href="">
+					<span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
+					首页
+				</a>
+			</li><li>
+				<a href="">
+					<span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
+					首页
+				</a>
+			</li><li>
+				<a href="">
+					<span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
+					首页
+				</a>
+			</li>
+		</ul>
+	</div>
+<script src="__PUBLIC__/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="__PUBLIC__/js/district-all.js" type="text/javascript"></script>
+<script src="__PUBLIC__/js/linkagesel-min.js" type="text/javascript"></script>
+<script>
+var opts = {
+		data: districtData,     // districtData为district-all.js中定义的变量
+		select:  '#dist',
+		selClass:'select-fix-width',
+		head:'请选择',
+		fixWidth:'100%'
+};
+var linkageSel = new LinkageSel(opts);
+districtData = opts = null; // 如果数据量大最好在创建LinkageSel实例之后清空
+linkageSel.onChange(function() {
+	d = this.getSelectedDataArr('name'),    // 所有有选定菜单的name. this === linkageSel2
+	arr = [];
+	select_value = $(".select_value");
+	for (var i = 0, len = d.length; i < len; i++) {
+		arr.push(d[i]);
+	}
+	select_value.val(arr.join('#'));
+	$(".addradd-item select").css('width', '100%');
+});
+</script>
+
+</body>
+</html>

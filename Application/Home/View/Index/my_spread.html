@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <include file="include/head" title="我的推广" />
+</head>
+
+<body>
+	<div class="header-blank"></div>
+    <div class="header">
+		我的推广
+		<span class="left">
+			<a href="{:U('ucenter')}"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></a>
+		</span>
+	</div>
+	
+	<div class="myspread-main">
+		<table width="100%">
+			<tr>
+				<td>
+					<img src="__PUBLIC__/images/myspread-1.jpg" /><br/>
+					<p>分店关注统计</p>
+					<p><span class="edage">{$count}</span></p>
+				</td>
+				<td>
+					<img src="__PUBLIC__/images/myspread-2.jpg" /><br/>
+					<p>分店订单统计</p>
+					<p><span class="edage">{$total}</span></p>
+				</td>
+			</tr>
+		
+		</table>
+	</div>
+	
+	<include file="include/bottom" />
+
+</body>
+</html>

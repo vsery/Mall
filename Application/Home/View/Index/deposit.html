@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <include file="include/head" title="转让管理" />
+</head>
+
+<body style="background:#f2f2f2;">
+	<div class="header-blank"></div>
+    <div class="header">
+		转让管理
+		<span class="left">
+			<a href="javascript:;" onclick="window.history.go(-1)"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></a>
+		</span>
+	</div>
+	
+	<div class="deposit-main">
+		<div class="deposit-topbar">
+			<span class="right">
+				<a href="{:U('deposit_add')}">
+					<span class="glyphicon glyphicon-plus"></span>
+					申请转让
+				</a>
+			</span>
+			<span class="glyphicon glyphicon-retweet left"></span>
+			转让记录
+		</div>
+		<div class="deposit-list">
+			<table boder="0" cellspacing="1">
+				<tr>
+					<th>转让金额</th>
+					<th>受让用户</th>
+					<th>转让日期</th>
+				</tr>
+				<volist name="list" id="vo">
+				<tr>
+					<td>￥{$vo.money}</td>
+					<td>{$vo.accept_user_name}</td>
+					<td>{$vo.create_time|date="Y-m-d",###}</td>
+				</tr>
+				</volist>
+			</table>
+		</div>
+	</div>
+	
+	<include file="include/bottom" />
+
+
+</body>
+</html>

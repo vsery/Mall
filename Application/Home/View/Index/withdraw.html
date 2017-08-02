@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <include file="include/head" title="提现管理" />
+</head>
+
+<body style="background:#f2f2f2;">
+	<div class="header-blank"></div>
+    <div class="header">
+		提现管理
+		<span class="left">
+			<a href="{:U('ucenter')}"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></a>
+		</span>
+	</div>
+	
+	<div class="withdraw-main">
+		<div class="withdraw-topbar">
+			<span class="right">
+				<a href="{:U('withdraw_add')}">
+					<span class="glyphicon glyphicon-plus"></span>
+					申请提现
+				</a>
+			</span>
+			<span class="glyphicon glyphicon-retweet left"></span>
+			提现记录
+		</div>
+		<div class="withdraw-list">
+			
+			<volist name="list" id="vo">
+			<div class="withdraw-item">
+				<p>{$user.id}{$vo.create_time}</p>
+				<p>提现金额：<span class="red">￥{$vo.money}</span></p>
+				<p>状态：{$vo.status|get_withdraw_status}</p>
+				<hr/>
+				<p>申请时间：{$vo.create_time|date="Y-m-d H:i:s",###}</p>
+				<if condition="$vo['status'] eq -1">
+				<p>拒绝时间：{$vo.confirm_time|date="Y-m-d H:i:s",###}</p>
+				<elseif condition="$vo['status'] gt 1"/>
+				<p>审核时间：{$vo.audit_time|date="Y-m-d H:i:s",###}</p>
+				</if>
+				<if condition="$vo['status'] gt 2">
+				<p>完成时间：{$vo.confirm_time|date="Y-m-d H:i:s",###}</p>
+				</if>
+			</div>
+			</volist>
+			
+		</div>
+	</div>
+	
+	<include file="include/bottom" />
+
+
+</body>
+</html>

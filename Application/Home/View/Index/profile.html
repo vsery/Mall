@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <include file="include/head" title="微商中心" />
+</head>
+
+<body>
+	<div class="header-blank"></div>
+    <div class="header">
+		商城首页
+		<span class="left">
+			<a href="{:U('Index/ucenter')}" onclick="window.history.go(-1)"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></a>
+		</span>
+	</div>
+	
+	<div class="profile-main">
+		<form method="post" name="form" id="form">
+			<div class="head">
+				<img src="{$user.headimg}" class="headimg" /><br/>
+				<!--我的奇妙天使：<span class="red">奇妙微商&杨斌</span>-->
+				{$user.nickname}
+			</div>
+			<div class="profile-item">
+				真实姓名<br/>
+				<input type="text" name="true_name" <notempty name="user['true_name']">value='{$user.true_name}' readonly</notempty> /><br/>
+				<span class="gray">设置后无法修改</span>
+			</div>
+			<div class="profile-item">
+				身份证号码<br/>
+				<input type="text" name="cardno" <notempty name="user['cardno']">value='{$user.cardno}' readonly</notempty> /><br/>
+				<span class="gray">设置后无法修改</span>
+			</div>
+			<div class="profile-item">
+				手机号码<br/>
+				<input type="text" name="mobile"  <notempty name="user['mobile']">value='{$user.mobile}'</notempty> /><br/>
+				<span class="gray">此信息很重要</span>
+			</div>
+			<div class="profile-item">
+				性别<br/>
+				<input type="radio" name="sex" value="1" <if condition="$user['sex'] eq 1">checked</if> />男&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="radio" name="sex" value="2" <if condition="$user['sex'] eq 2">checked</if> />女
+			</div>
+			<div class="profile-item">
+				生日<br/>
+				<input type="text" name="birth" <notempty name="user['birth']">value='{$user.birth}'</notempty> />
+			</div>
+			
+			<div class="profile-item">
+				<input type="submit" class="btn" value="保存地址" />
+				<a href="" class="cancle">取消</a>
+			</div>
+		</form>
+	</div>
+	
+	<include file="include/bottom" />
+
+</body>
+</html>

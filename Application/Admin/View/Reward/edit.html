@@ -1,0 +1,74 @@
+
+        <div class="pageheader notab">
+            <h1 class="pagetitle">发放绩效</h1>
+            <span class="pagedesc">请认真填写各项信息，提交后不可撤销</span>
+            
+        </div><!--pageheader-->
+        
+        <div id="contentwrapper" class="contentwrapper lineheight21">
+        
+        
+            <form class="stdform stdform2" method="post">
+				<p>
+					<label>用户等级</label>
+					<span class="field">
+						<select name="level" default="{$info.level}" onchange="getUserCount()">
+							<volist name="_CFG['level']" id="vo">
+							<option value="{$key}">{$vo.name}</option>
+							</volist>
+						</select>
+					</span>
+					<script>
+					function getUserCount(){
+						level = jQuery("select[name=level]").val();
+						jQuery.post("{:U('get_user_count')}",{level:level},function(d){
+							nums = d.nums
+							jQuery('.nums').text(nums); 
+							sum();
+						});
+					}
+					
+					function sum(){
+						nums = parseInt(jQuery(".nums").text());
+						if(isNaN(nums) || nums <0){
+							nums = 0;
+						}
+						
+						money = parseFloat(jQuery("#money").val());
+						if(isNaN(money) || money <0){
+							money = 0;
+						}
+						
+						total = nums * money;
+						jQuery(".total").text(total);
+					}
+					
+					jQuery(document).ready(function(){
+						getUserCount();
+						jQuery("#money").on('input',function(e){ sum();});
+					});
+					</script>
+				</p>
+				<p>
+					<label>金额</label>
+					<span class="field"><input type="text" name="money" id="money" value="{$info.money}" class="smallinput" /></span>
+				</p>
+				<p>
+					<style>
+					.nums,.total{ font-weight:bold;}
+					</style>
+					<label>其他</label>
+					<span class="field">
+						这个等级共有<span class="nums">1</span>个会员<br/>
+						预计共发放金额为<span class="total">123</span>元</span>
+					</span>
+				</p>
+				
+				
+				<p class="stdformbutton">
+					<button class="submit radius2">提交</button>
+				</p>
+			</form>
+        
+        </div><!--contentwrapper-->
+        

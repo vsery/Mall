@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <include file="include/head" title="在线充值" />
+</head>
+
+<body>
+	<div class="header-blank"></div>
+    <div class="header">
+		在线充值
+		<span class="left">
+			<a href="{:U('ucenter')}"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></a>
+		</span>
+	</div>
+	
+	<div class="charge-main">
+		<form method="post" action="{:U('Index/pay')}" namd="form" id='form'>
+			<div class="charge-header">
+				<p>账户可用月</p>
+				<p class="money">￥{$user.money}</p>
+			</div>
+			<div class="charge-money">
+				<volist name="values" id="vo">
+				<a href="javascript:;" onclick="setMoney(this)">{$vo}</a>
+				</volist>
+				<input type="hidden" name="charge" id="money" value="" />
+				<script>
+				function setMoney(obj){
+					$(".charge-money a").removeClass('active');
+					$("#money").val($(obj).text());
+					$(obj).addClass('active');
+				}
+				</script>
+			</div>
+			<div class="charge-btn">
+				<hr/>
+				<a href="javascript:;" onclick="form_submit()">在线支付</a>
+				<script>
+				function form_submit(){
+					money = parseFloat($("#money").val());
+					if(isNaN(money) || money <=0){
+						alert('请选择充值金额');
+						return false;
+					}
+					form.submit();
+				}
+				</script>
+			</div>
+		</form>
+	</div>
+	
+	<include file="include/bottom" />
+
+
+</body>
+</html>

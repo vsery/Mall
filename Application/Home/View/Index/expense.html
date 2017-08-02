@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <include file="include/head" title="我的佣金" />
+</head>
+
+<body>
+	<div class="header-blank"></div>
+    <div class="header">
+		我的佣金
+		<span class="left">
+			<a href="javascript:;" onclick="window.history.go(-1)"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></a>
+		</span>
+	</div>
+	<div class="expense-main">
+		<ul>
+			<li>
+				绩效分红
+				<span class="edage">￥{$user.reward}</span>
+			</li>
+			<li>
+				全球分红
+				<span class="edage">￥{$user.reward_global}</span>
+			</li>
+			<li>
+				累计佣金总额
+				<span class="edage">￥{$user.expense_total}</span>
+			</li>
+			<li>
+				可用佣金(余额)
+				<span class="edage">￥{$user.expense_avail}</span>
+			</li>
+			<li>
+				购物币提留总额
+				<span class="edage">￥{$user.buycoin_total}</span>
+			</li>
+			<li>
+				购物币可用金额
+				<span class="edage">￥{$user.buycoin_avail}</span>
+			</li>
+			<li>
+				奇妙币提留总额
+				<span class="edage">￥{$user.othercoin_total}</span>
+			</li>
+			<li>
+				奇妙币可用金额
+				<span class="edage">￥{$user.othercoin_avail}</span>
+			</li>
+			<li>
+				累计转币金额
+				<span class="edage">￥{$user.assign_total}</span>
+			</li>
+			<li>
+				累计接受金额
+				<span class="edage">￥{$user.receive_total}</span>
+			</li>
+			<li>
+				累计已提现总额
+				<span class="edage">￥{$user.withdraw_total}</span>
+			</li>
+		</ul>
+	</div>
+	
+	<include file="include/bottom" />
+
+</body>
+</html>

@@ -1,0 +1,94 @@
+[ 2017-07-19T09:53:24+08:00 ] 192.168.1.70 /mall/
+ERR: SQLSTATE[HY000] [1045] Accès refusé pour l'utilisateur: 'root'@'@localhost' (mot de passe: OUI)
+
+[ 2017-07-19T09:56:35+08:00 ] 127.0.0.1 /mall/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003001s ]
+ERR: SQLSTATE[HY000] [1045] Accès refusé pour l'utilisateur: 'root'@'@localhost' (mot de passe: OUI)
+
+[ 2017-07-19T09:58:54+08:00 ] 127.0.0.1 /mall/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+ERR: SQLSTATE[HY000] [1045] Accès refusé pour l'utilisateur: 'root'@'@localhost' (mot de passe: OUI)
+
+[ 2017-07-19T09:59:09+08:00 ] 127.0.0.1 /mall/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+ERR: SQLSTATE[HY000] [1045] Accès refusé pour l'utilisateur: 'root'@'@localhost' (mot de passe: OUI)
+
+[ 2017-07-19T10:04:15+08:00 ] 127.0.0.1 /mall/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.001000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+ERR: SQLSTATE[HY000] [1045] Accès refusé pour l'utilisateur: 'root'@'@localhost' (mot de passe: OUI)
+
+[ 2017-07-19T10:08:43+08:00 ] 127.0.0.1 /mall/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `dd_config` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `dd_config`  [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: user_id D:\wamp\www\mall\Application\Home\Controller\HomeController.class.php 第 20 行.
+
+[ 2017-07-19T10:08:51+08:00 ] 192.168.1.70 /mall/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `dd_config` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `dd_config`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: user_id D:\wamp\www\mall\Application\Home\Controller\HomeController.class.php 第 20 行.
+
+[ 2017-07-19T10:23:10+08:00 ] ::1 /mall/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `dd_config` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `dd_config`  [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: user_id D:\wamp\www\mall\Application\Home\Controller\HomeController.class.php 第 20 行.
+
+[ 2017-07-19T10:26:45+08:00 ] ::1 /mall/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `dd_config` [ RunTime:0.0050s ]
+SQL: SELECT * FROM `dd_config`  [ RunTime:0.0010s ]
+NOTIC: [8] Undefined index: user_id D:\wamp\www\mall\Application\Home\Controller\HomeController.class.php 第 20 行.
+
+[ 2017-07-19T10:26:49+08:00 ] 192.168.1.70 /mall/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `dd_config` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `dd_config`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: user_id D:\wamp\www\mall\Application\Home\Controller\HomeController.class.php 第 20 行.
+

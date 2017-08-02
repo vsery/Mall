@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <include file="include/head" title="通知公告" />
+</head>
+
+<body>
+	<div class="header-blank"></div>
+    <div class="header">
+		通知公告
+		<span class="left">
+			<a href="{:U('Index/ucenter')}"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></a>
+		</span>
+	</div>
+	
+	<div class="notice-main">
+		<volist name="list" id="vo">
+		<div class="notice-item">
+			<a href="{:U('Index/notice_detail?id='.$vo['id'])}">
+				<span class="date">{$vo.create_time|date="Y-m-d",###}</span>
+				<span class="arrow">
+					<span class="glyphicon glyphicon-chevron-right"></span>
+				</span>
+				{$vo.title}
+			</a>
+		</div>
+		</volist>
+	</div>
+	<include file="include/bottom" />
+
+
+</body>
+</html>

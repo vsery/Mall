@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <include file="include/head" title="我的佣金" />
+</head>
+
+<body>
+	<div class="header-blank"></div>
+    <div class="header">
+		{$_CFG.site.rank_name}
+		<span class="left">
+			<a href="{:U('Index/ucenter')}"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></a>
+		</span>
+	</div>
+	
+	<div class="rank-main">
+		<if condition="$rank gt 108">
+		<div class="rank-item">
+			<img src="{$user.headimg}" class="headimg"/>
+			<span class="rank">108+</span>
+			<div class="nickname">{$user.nickname}</div>
+			<div class="info">
+				<span class="level">{$level_name[$user['level']]}</span>
+				<span class="expense">累计佣金:￥{$user.expense_total}</span>
+			</div>
+			
+		</div>
+		
+		<div class="rank-tips">亲，你不在前108位，暂时无权查看排名！<p>加油哦！</p></div>
+		<else/>
+			<volist name="list" id="vo">
+			<div class="rank-item">
+				<img src="{$vo.headimg}" class="headimg"/>
+				<span class="rank">{$i}</span>
+				<div class="nickname">{$vo.nickname}</div>
+				<div class="info">
+					<span class="agent">下线数:{$vo.agent}</span>
+				</div>
+				
+			</div>
+			</volist>
+		</if>
+	</div>
+	
+	<include file="include/bottom" />
+
+</body>
+</html>

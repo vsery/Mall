@@ -1,0 +1,106 @@
+
+        <div class="pageheader notab">
+            <h1 class="pagetitle">用户管理</h1>
+            <span class="pagedesc">管理商城中的用户信息</span>
+            
+        </div><!--pageheader-->
+        
+        <div id="contentwrapper" class="contentwrapper lineheight21">
+			<div class="tableoptions">        
+				<form method="post">
+					等级:
+					<select name="level" default="{$_GET['level']}" style="width:90px; min-width:0;">
+						<option value="">全部</option>
+						<option value="0">普通</option>
+						<volist name="_CFG['level']" id="vo">
+						<option value="{$key}">{$vo.name}</option>
+						</volist>
+					</select>
+					编号:
+					<input type="text" name="id" value="{$_GET['id']}" class="smallinput" style="width:100px;" />
+					<input type="submit" value="查找" />
+				</form>
+			</div><!--tableoptions-->
+			<table cellpadding="0" cellspacing="0" border="0" id="table2" class="stdtable stdtablecb">
+				<thead>
+					<tr>
+						<th class="head1">
+							<a href="<?php if($_GET['order'] == 'id' && $_GET['type'] == 'desc'){
+								echo U('index?order=id&type=asc');
+							}else{
+								echo U('index?order=id&type=desc');
+							}?>">
+							编号
+							<?php if($_GET['order'] == 'id' && $_GET['type'] == 'desc')echo '↑';else echo '↓';?>
+							</a>
+						</th>
+						<th class="head1">头像</th>
+						<th class="head0">昵称</th>
+						<th class="head1">等级</th>
+						<th class="head0">
+							<a href="<?php if($_GET['order'] == 'sub_time' && $_GET['type'] == 'desc'){
+								echo U('index?order=sub_time&type=asc');
+							}else{
+								echo U('index?order=sub_time&type=desc');
+							}?>">
+							关注日期
+							<?php if($_GET['order'] == 'sub_time' && $_GET['type'] == 'desc')echo '↑';else echo '↓';?>
+							</a>
+						</th>
+						<th class="head0">
+							<a href="<?php if($_GET['order'] == 'agent1' && $_GET['type'] == 'desc'){
+								echo U('index?order=agent1&type=asc');
+							}else{
+								echo U('index?order=agent1&type=desc');
+							}?>">
+							一级下线数
+							<?php if($_GET['order'] == 'agent1' && $_GET['type'] == 'desc')echo '↑';else echo '↓';?>
+							</a>
+						</th>
+						<th class="head0">
+							<a href="<?php if($_GET['order'] == 'agent2' && $_GET['type'] == 'desc'){
+								echo U('index?order=agent2&type=asc');
+							}else{
+								echo U('index?order=agent2&type=desc');
+							}?>">
+							二级下线数
+							<?php if($_GET['order'] == 'agent2' && $_GET['type'] == 'desc')echo '↑';else echo '↓';?>
+							</a>
+						</th>
+						<th class="head0">
+							<a href="<?php if($_GET['order'] == 'agent3' && $_GET['type'] == 'desc'){
+								echo U('index?order=agent3&type=asc');
+							}else{
+								echo U('index?order=agent3&type=desc');
+							}?>">
+							三级下线数
+							<?php if($_GET['order'] == 'agent3' && $_GET['type'] == 'desc')echo '↑';else echo '↓';?>
+							</a>
+						</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					<volist name="list" id="vo">
+					<tr>
+						<td>{$vo.id}</td>
+						<td><img src="{$vo.headimg}" style="width:50px; height:50px; border-radius:25px;" /></td>
+						<td>{$vo.nickname}</td>
+						<td>{$_CFG['level'][$vo['level']]['name']}</td>
+						<td><if condition="$vo['sub_time'] gt 0">{$vo.sub_time|date="Y-m-d",###}<else/>-</if></td>
+						<td>{$vo.agent1}</td>
+						<td>{$vo.agent2}</td>
+						<td>{$vo.agent3}</td>
+						<td>
+							<a href="{:U('detail?id='.$vo['id'])}">详细信息</a>
+						</td>
+					</tr>
+					</volist>
+				</tbody>
+			</table>
+			<div class="dataTables_paginate paging_full_numbers" id="dyntable2_paginate">
+			{$page|default="<p style='text-align:center'>暂时没有数据</p>"}
+			</div>
+        
+        </div><!--contentwrapper-->
+        

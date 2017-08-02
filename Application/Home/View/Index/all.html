@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <include file="include/head" title="{$pagetitle}" />
+</head>
+
+<body>
+	<div class="header-blank"></div>
+    <div class="header">
+		{$pagetitle}
+		<span class="left">
+			<a href="javascript:;" onclick="history.go(-1)"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></a>
+		</span>
+		<span class="right">
+			<a href="javascript:;" id="showCates"><span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span></a>
+		</span>
+	</div>
+	
+	<div class="cover">
+	</div>
+	<div class="cates">
+		<ul>
+			<li><a href="{:U('all')}">全部商品</a></li>
+			<volist name="cates" id="vo">
+			<li><a href="{:U('all?cate_id='.$vo['id'])}">{$vo.name}</a></li>
+			</volist>
+		</ul>
+		<span class="close">×</span>
+	</div>
+	<script>
+	$(document).ready(function(e){
+		w = $(this).width();
+		h = $(this).height();
+		
+		// 点击关闭按钮或者遮罩
+		$(".cates .close").on('click',function(){close();});
+		$(".cover").on('click',function(){close();});
+		
+		// 显示分类
+		$("#showCates").on('click',function(){
+			showCates();
+		});
+		
+		function close(){
+			$(".cover").hide();
+			$(".cates").animate({right:'-150px'},function(){
+				$(this).hide();
+			});
+		}
+		
+		function showCates(){
+			$(".cover").show();
+			$(".cates").show(100,function(e){
+				$(this).animate({right:'0px'});;
+			})
+			
+		}
+	});
+	</script>
+	
+	<div class="all-sort-blank"></div>
+	<div class="all-sort">
+		<ul>
+			<li <if condition="$_GET['order'] eq ''">class="active"</if>><a href="{:U('Index/all')}">默认</a></li>
+			<li <if condition="$_GET['order'] eq 'price'">class="active"</if>>
+				<a href="<?php if($_GET['order'] == 'price' && $_GET['type'] == 'desc')echo U('Index/all?order=price&type=asc&cate_id='.$_GET['cate_id']);else echo U('Index/all?order=price&type=desc&cate_id='.$_GET['cate_id'])?>">
+					价格
+					<span class="glyphicon glyphicon-triangle-<?php if($_GET['order'] == 'price' && $_GET['type'] == 'desc')echo 'bottom';else echo 'top';?>" aria-hidden="true"></span>
+				</a>
+			</li>
+			<li <if condition="$_GET['order'] eq 'sold'">class="active"</if>>
+				<a href="<?php if($_GET['order'] == 'sold' && $_GET['type'] == 'desc')echo U('Index/all?order=sold&type=asc&cate_id='.$_GET['cate_id']);else echo U('Index/all?order=sold&type=desc&cate_id='.$_GET['cate_id'])?>">
+					销量
+					<span class="glyphicon glyphicon-triangle-<?php if($_GET['order'] == 'sold' && $_GET['type'] == 'desc')echo 'bottom';else echo 'top';?>" aria-hidden="true"></span>
+				</a>
+			</li>
+		</ul>
+	</div>
+	
+	<div class="all-main">
+		<div class="all-msg">
+			找到相关商品{$count}件
+		</div>
+		<volist name="list" id="vo">
+		<div class="all-item">
+			<a href="{:U('Index/product?id='.$vo['id'])}">
+				<img src="{$vo.pic}" class="product" />
+				<div class="title">{$vo.title}</div>
+				<div class="price">￥{$vo.price}</div>
+			</a>
+		</div>
+		</volist>
+		<div class="page">
+		{$page}
+		</div>
+	</div>
+	
+	<include file="include/bottom" />
+
+</body>
+</html>

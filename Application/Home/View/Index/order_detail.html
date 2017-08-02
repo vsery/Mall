@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+	<include file="include/head" title="订单详情" />
+</head>
+
+<body style="background:#f2f2f2;">
+	<div class="header-blank"></div>
+    <div class="header">
+		订单详情
+		<span class="left">
+			<a href="javascript:;" onclick="window.history.go(-1)"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></a>
+		</span>
+	</div>
+	
+	<div class="orderdetail-main">
+		<div class="desc">
+			<p>
+				当前订单状态:{:get_order_status($info['status'])}
+				<if condition="$info['status'] eq 3"><a href="{:U('order_confirm?id='.$info['id'])}" class="btn">确认收货</a></if>
+				<if condition="$info['status'] eq 1"><a href="{:U('Index/order_pay?id='.$info['id'])}" class="btn">去支付</a></if>
+			</p>
+			<if condition="$info['status'] gt 2">
+			<p>物流单号：{$info.express_no}[{$info.express|default="默认快递"}]</p>
+			<p><a href="http://m.kuaidi100.com/result.jsp?nu={$info.express_no}" class="btn"><span class="glyphicon glyphicon-random" aria-hidden="true"></span> 查看物流信息</a></p>
+			</if>
+		</div>
+		<div class="data">
+			<p>订单编号：{$info.sn}</p>
+			<p>发货时间：<if condition="$info['delivery_time'] gt 0">{$info.delivery_time|date="Y-m-d H:i:s",###}<else/>-</if></p>
+			<p>创建时间：<if condition="$info['create_time'] gt 0">{$info.create_time|date="Y-m-d H:i:s",###}<else/>-</if></p>
+			<p>完成时间：<if condition="$info['confirm_time'] gt 0">{$info.confirm_time|date="Y-m-d H:i:s",###}<else/>-</if></p>
+			<p>付款时间：<if condition="$info['pay_time'] gt 0">{$info.pay_time|date="Y-m-d H:i:s",###}<else/>-</if></p>
+			<p>商品金额：￥{$info.total}元</p>
+			<p>
+				应付金额：<span class="red">￥{$info['total'] - $info['points'] -$info['money'] - $info['wxpay']}</span>元
+				已支付：<span class="red">￥{$info['points'] + $info['money'] + $info['wxpay']}</span>元
+			</p>
+		</div>
+		<div class="title">
+			<span class="glyphicon glyphicon-th" aria-hidden="true"></span>
+			产品信息
+		</div>
+		<div class="products">
+			<volist name="products" id="vo">
+			<div class="item">
+				<img src="{$vo.pic}" class="productimg"/>
+				<div class="name">{$vo.title}</div>
+				<div class="price">￥{$vo.price} X {$vo.nums} = ￥{$vo['price']*$vo['nums']}</div>
+			</div>
+			</volist>
+		</div>
+		<div class="title">
+			<span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+			物流信息
+		</div>
+		<div class="data">
+			<p>收货人：{$info.name}</p>
+			<p>联系电话：{$info.mobile}</p>
+			<p>收货地址：{$info.addr}</p>
+		</div>
+		<div class="title">
+			<span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span>
+			订单动态
+		</div>
+		<div class="data">
+			<p>{$info.create_time|date="Y-m-d H:i:s",###} 创建订单</p>
+			<if condition="$info['status'] gt 1"><p>{$info.pay_time|date="Y-m-d H:i:s",###} 支付成功</p></if>
+			<if condition="$info['status'] gt 2"><p>{$info.delivery_time|date="Y-m-d H:i:s",###} 已经发货</p></if>
+			<if condition="$info['status'] gt 3"><p>{$info.confirm_time|date="Y-m-d H:i:s",###} 已完成</p></if>
+		</div>
+	</div>
+	
+	<include file="include/bottom" />
+
+</body>
+</html>

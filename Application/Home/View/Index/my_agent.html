@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <include file="include/head" title="我的代理" />
+</head>
+
+<body>
+	<div class="header-blank"></div>
+    <div class="header">
+		我的代理
+		<span class="left">
+			<a href="{:U('Index/ucenter')}"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></a>
+		</span>
+	</div>
+	
+	<div class="myagent-main">
+		<div class="myagent-tab">
+			<ul>
+				<li <if condition="$_GET['type'] eq 1">class="active"</if>><a href="{:U('my_agent?type=1')}">{$_CFG.dist.level1_name}<p><span class="edage">{$user.agent1}</span></p></a></li>
+				<li <if condition="$_GET['type'] eq 2">class="active"</if>><a href="{:U('my_agent?type=2')}">{$_CFG.dist.level2_name}<p><span class="edage">{$user.agent2}</span></p></a></li>
+				<li <if condition="$_GET['type'] eq 3">class="active"</if>><a href="{:U('my_agent?type=3')}">{$_CFG.dist.level3_name}<p><span class="edage">{$user.agent3}</span></p></a></li>
+			</ul>
+		</div>
+		<volist name="list" id="vo">
+		<div class="myagent-item">
+			<img src="{$vo.headimg}" class="headimg"/>
+			<div class="nickname">{$vo.nickname}</div>
+			<!--div class="info">
+				<!--span class="level">{ $level_name[$vo['level']]}</span-->
+				<!--span class="expense">累计佣金:￥{ $vo.expense_total}</span-->
+			</div-->
+		</div>
+		</volist>
+		<!--div class="myagent-item">
+			<img src="__PUBLIC__/images/product-test.jpg" class="headimg"/>
+			<div class="nickname">阿拉丁龙哥</div>
+			<div class="info">
+				<span class="level">见习男神</span>
+				<span class="expense">累计佣金:￥111</span>
+			</div>
+		</div-->
+	</div>
+	
+	<include file="include/bottom" />
+
+</body>
+</html>

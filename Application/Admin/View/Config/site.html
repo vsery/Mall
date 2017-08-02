@@ -1,0 +1,56 @@
+
+        <div class="pageheader notab">
+            <h1 class="pagetitle">站点设置</h1>
+            <span class="pagedesc">设置网站的基本信息</span>
+            
+        </div><!--pageheader-->
+        
+        <div id="contentwrapper" class="contentwrapper lineheight21">
+        
+        
+            <form class="stdform stdform2" method="post">
+				<p>
+					<label>网站名称</label>
+					<span class="field"><input type="text" name="name" id="name" value="{$_CFG.site.name}" class="smallinput" /></span>
+				</p>
+				<p>
+					<label>充值面额<small>多个用|分开</small></label>
+					<span class="field"><input type="text" name="charge" id="charge" value="{$_CFG.site.charge}" class="smallinput" /></span>
+				</p>
+				<p>
+					<label>提现支持的银行<small>多个用|分开</small></label>
+					<span class="field"><input type="text" name="banks" id="banks" value="{$_CFG.site.banks}" class="smallinput" /></span>
+				</p>
+				<p>
+					<label>关注编码前缀</label>
+					<span class="field"><input type="text" name="prefix" id="prefix" value="{$_CFG.site.prefix}" class="smallinput" /></span>
+				</p>
+				<p>
+					<label>积分支付比例<small>多少积分相当于1RMB</small></label>
+					<span class="field"><input type="text" name="points_rate" id="points_rate" value="{$_CFG.site.points_rate}" class="smallinput" /></span>
+				</p>
+				<p>
+					<label>积分名称<small>积分个性化显示名称</small></label>
+					<span class="field"><input type="text" name="points_name" id="points_name" value="{$_CFG.site.points_name}" class="smallinput" /></span>
+				</p>
+				<p>
+					<label>排行榜名称</label>
+					<span class="field"><input type="text" name="rank_name" id="rank_name" value="{$_CFG.site.rank_name}" class="smallinput" /></span>
+				</p>
+				<p>
+					<label>关注时回复关键词<small>关注时自动回复此关键词对应的内容</small></label>
+					<span class="field"><input type="text" name="subscribe" id="subscribe" value="{$_CFG.site.subscribe}" class="smallinput" /></span>
+				</p>
+				<p>
+					<label>客服电话<small>商品详情左下角一键拨号等</small></label>
+					<span class="field"><input type="text" name="tel" id="tel" value="{$_CFG.site.tel}" class="smallinput" /></span>
+				</p>
+				<p class="stdformbutton">
+					<button class="submit radius2">提交</button>
+					<input type="reset" class="reset radius2" value="重置" />
+				</p>
+			</form>
+        
+        
+        </div><!--contentwrapper-->
+        

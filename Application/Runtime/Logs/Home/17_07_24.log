@@ -1,0 +1,11 @@
+[ 2017-07-24T09:29:30+08:00 ] 127.0.0.1 /mall/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.003000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `dd_config` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `dd_config`  [ RunTime:0.0000s ]
+NOTIC: [8] Undefined index: user_id D:\wamp\www\mall\Application\Home\Controller\HomeController.class.php 第 20 行.
+

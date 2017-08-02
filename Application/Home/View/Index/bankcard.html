@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <include file="include/head" title="银行卡管理" />
+</head>
+
+<body>
+	<div class="header-blank"></div>
+    <div class="header">
+		银行卡管理
+		<span class="left">
+			<a href="{:U('ucenter')}" onclick="window.history.go(-1)"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></a>
+		</span>
+	</div>
+	
+	<div class="bankcard-main">
+		<div class="bankcard-topbar">
+			<span class="right">
+				<a href="{:U('bankcard_add')}">
+					<span class="glyphicon glyphicon-plus"></span>
+					添加银行卡
+				</a>
+			</span>
+			<span class="glyphicon glyphicon-credit-card left"></span>
+			我的银行卡
+		</div>
+		<div class="bankcard-list">
+			<volist name="list" id="vo">
+			<div class="bankcard-item">
+				<div class="item-bank">
+					<span class="glyphicon glyphicon-credit-card"></span>
+					{$vo.bank}
+				</div>
+				<div class="item-no">卡号：{$vo.cardno}</div>
+				<div class="item-name">
+					<a href="{:U('Index/bankcard_del?id='.$vo['id'])}" onclick="return confirm('你确实要删除这张银行卡吗？')" class="redbtn">
+						<span class="glyphicon glyphicon-trash"></span>
+						移除银行卡
+					</a>
+					户名：{$vo.name}
+				</div>
+			</div>
+			</volist>
+		</div>
+	</div>
+	
+	<include file="include/bottom" />
+
+
+</body>
+</html>

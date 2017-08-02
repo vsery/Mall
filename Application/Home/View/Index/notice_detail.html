@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <include file="include/head" title="通知详情" />
+</head>
+
+<body>
+	<div class="header-blank"></div>
+    <div class="header">
+		通知详情
+		<span class="left">
+			<a href="{:U('Index/notice')}"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></a>
+		</span>
+	</div>
+	
+	<div class="noticedetail-main">
+		<div class="noticedetail-title">{$info.title}</div>
+		<div class="noticedetail-body">{$info.body}</div>
+	</div>
+	<include file="include/bottom" />
+
+
+</body>
+</html>
